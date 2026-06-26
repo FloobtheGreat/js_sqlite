@@ -1,0 +1,6 @@
+*.db
+node_modules
+*.d.ts
+*.d.ts.map
+*.js.map
+*.js
