@@ -1,13 +1,36 @@
 import { initializeSchema } from "./db/schema.js";
-import { createTask, listTasks} from "./tasks/taskRepository.js";
+import { createTask, listTasks } from "./tasks/taskRepository.js";
+import promptsync from "prompt-sync";
+
+const prompt = promptsync();
+
+//function for getting deposits
+const getInput = (): string => {
+    while(true) {
+        const input: string = prompt("What would you like to do? ");
+
+        return input; 
+    }     
+}
 
 initializeSchema();
+//createTask("Test repository layer");
 
-createTask("Test repository layer");
+while (true) {
+    const tasks = listTasks();
 
-const tasks = listTasks();
+    console.log(tasks)
 
-console.log(tasks)
+    console.log("\n q to quit, c to create a task.");
+    const choice = getInput();
+
+    if (choice === 'q') {
+        console.log("Goodbye");
+        break;
+    }
+
+}
+
 
 // const db = new DatabaseSync('data/test.db');
 
