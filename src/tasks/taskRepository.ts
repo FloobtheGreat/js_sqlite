@@ -8,7 +8,7 @@ type TaskRow = {
   created_at: string;
 };
 
-function rowToTask(row: TaskRow): Task {
+const rowToTask = (row: TaskRow): Task => {
   return {
     id: row.id,
     title: row.title,
@@ -17,7 +17,7 @@ function rowToTask(row: TaskRow): Task {
   };
 }
 
-export function createTask(title: string): Task {
+export const createTask = (title: string): Task => {
   const createdAt = new Date().toISOString();
 
   const result = db.prepare(`
@@ -30,7 +30,7 @@ export function createTask(title: string): Task {
   return getTaskById(id);
 }
 
-export function getTaskById(id: number): Task {
+export const getTaskById = (id: number): Task => {
   const row = db.prepare(`
     SELECT id, title, status, created_at
     FROM tasks
@@ -44,7 +44,7 @@ export function getTaskById(id: number): Task {
   return rowToTask(row);
 }
 
-export function listTasks(): Task[] {
+export const listTasks = (): Task[] => {
   const rows = db.prepare(`
     SELECT id, title, status, created_at
     FROM tasks
@@ -54,7 +54,7 @@ export function listTasks(): Task[] {
   return rows.map(rowToTask);
 }
 
-export function completeTask(id: number): void {
+export const completeTask = (id: number): void => {
   db.prepare(`
     UPDATE tasks
     SET status = 'completed'
@@ -62,7 +62,7 @@ export function completeTask(id: number): void {
   `).run(id);
 }
 
-export function deleteTask(id: number): void {
+export const deleteTask = (id: number): void => {
   db.prepare(`
     DELETE FROM tasks
     WHERE id = ?
