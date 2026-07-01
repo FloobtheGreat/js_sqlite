@@ -1,6 +1,6 @@
 import { db } from "./database.js";
 
-export function initializeSchema() {
+export const initializeSchema = () => {
   db.exec(`
     CREATE TABLE IF NOT EXISTS tasks (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
