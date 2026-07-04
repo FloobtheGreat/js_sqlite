@@ -21,7 +21,7 @@ while (true) {
 
     console.log(tasks)
 
-    console.log("\n q to quit, c to create a task.");
+    console.log("q to quit, c to create a task.");
     const choice = getInput();
 
     if (choice === 'q') {
