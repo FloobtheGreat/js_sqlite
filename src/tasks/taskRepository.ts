@@ -68,3 +68,8 @@ export const deleteTask = (id: number): void => {
     WHERE id = ?
   `).run(id);
 }
+
+export function closeDatabase(): void {
+  db.close();
+  console.log("Connection to Database closed");
+}

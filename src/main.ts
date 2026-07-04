@@ -1,5 +1,5 @@
 import { initializeSchema } from "./db/schema.js";
-import { createTask, listTasks } from "./tasks/taskRepository.js";
+import { createTask, listTasks, closeDatabase } from "./tasks/taskRepository.js";
 import promptsync from "prompt-sync";
 
 const prompt = promptsync();
@@ -25,6 +25,7 @@ while (true) {
     const choice = getInput();
 
     if (choice === 'q') {
+        closeDatabase();
         console.log("Goodbye");
         break;
     }
